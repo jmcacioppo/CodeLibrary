@@ -1,0 +1,21 @@
+{
+  "name": "CodeLibrary",
+  "version": "1.0.0",
+  "description": "This is a code library",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Joseph Cacioppo",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.5",
+    "angular-route": "^1.6.5",
+    "angularfire": "^2.3.0",
+    "bootstrap": "^3.3.7",
+    "express": "^4.15.3",
+    "firebase": "^4.1.3",
+    "jquery": "^3.2.1"
+  }
+}
