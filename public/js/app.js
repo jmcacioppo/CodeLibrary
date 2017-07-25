@@ -1,6 +1,14 @@
 'use strict';
 
-var codeLibrary = angular.module('codeLibrary');
+var codeLibrary = angular.module('codeLibrary',  ['ngRoute', 'firebase'])
+    .config(function($routeProvider) {
+        $routeProvider
+        .when('/', {
+            templateUrl: 'templates/home.html',
+            controller: 'HomeController'
+        })
+        .otherwise({redirectTo: '/'})
+    });
 
 // var josephcacioppo = angular.module('josephcacioppo', ['ngRoute'])
 //     .config(function($routeProvider) {
