@@ -2,12 +2,15 @@
 
 codeLibrary.controller('LoginController',
     function($scope, $location, auth) {
-        console.log('hello');
+        $scope.user = auth.currentUser;
+        console.log($scope.user);
+        
         $scope.anonymousLogin = () => {
-            auth.signInAnonymously().then( () => {
+            auth.signInAnonymously()
+            .then( () => {
                 console.log('Signed in!');
-                
-            }).catch( (err) => {
+            })
+            .catch( (err) => {
                 $scope.errorMessage = err.code;
             });
 
@@ -17,8 +20,7 @@ codeLibrary.controller('LoginController',
                 $scope.loggedIn = true;
                 $location.path('/home');
             }
-            else console.log('not yet');
-
+            else console.log('Not signed in');
         }   
     }
 );
