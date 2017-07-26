@@ -1,3 +1,3 @@
-codeLibrary.factory('auth', function($firebaseAuth) {
-    return $firebaseAuth;
+codeLibrary.factory('auth', function() {
+    return firebase.auth();
 });

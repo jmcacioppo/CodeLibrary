@@ -9,7 +9,16 @@ var codeLibrary = angular.module('codeLibrary',  ['ngRoute', 'firebase'])
         })
         .when('/login', {
             templateUrl: 'templates/login.html',
-            controller: 'LoginController'
+            controller: 'LoginController',
+            resolve: {
+                currentAuth: () => {
+                    return $waitForAuth();
+                }
+            }
+        })
+        .when('/logout', {
+            templateUrl: 'templates/logout.html',
+            controller: 'LogoutController'
         })
         .otherwise({redirectTo: '/'})
     });
