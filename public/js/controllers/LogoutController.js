@@ -7,6 +7,7 @@ codeLibrary.controller('LogoutController',
 
         $scope.anonymousLogout = () => {
             auth.signOut();
+            $location.path('/home');
         }
     }
 );
