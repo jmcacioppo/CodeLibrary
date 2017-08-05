@@ -19,11 +19,13 @@ codeLibrary.controller('HomeController',
         // console.log($scope.test.$id);
         // console.log($scope.test2);
 
-        $scope.show = () => {
-            console.log(auth);
-            
+        var count = 0;
+
+        $scope.show = () => {            
             $scope.topics.forEach( (value) => {
-                console.log(value);
+                $scope[count] = $firebaseObject(rootRef);
+                console.log($scope[count]);
+                count++;
             });
         }
 
