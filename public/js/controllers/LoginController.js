@@ -3,7 +3,7 @@
 codeLibrary.controller('LoginController',
     function($scope, $location, auth) {
         $scope.user = auth.currentUser;
-        console.log($scope.user);
+        // console.log($scope.user);
         
         $scope.anonymousLogin = () => {
             auth.signInAnonymously()
@@ -11,16 +11,10 @@ codeLibrary.controller('LoginController',
                 console.log('Signed in!');
             })
             .catch( (err) => {
-                $scope.errorMessage = err.code;
+                console.log(err.code);
             });
 
-            $scope.user = auth.currentUser;
-            if($scope.user) {
-                //Show and hide logged in titles based on if logged in or not
-                $scope.loggedIn = true;
-                $location.path('/home');
-            }
-            else console.log('Not signed in');
+            $location.path('/home');
         }   
     }
 );
