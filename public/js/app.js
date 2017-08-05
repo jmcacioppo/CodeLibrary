@@ -24,12 +24,13 @@ var codeLibrary = angular.module('codeLibrary',  ['ngRoute', 'firebase'])
         })
         .otherwise({redirectTo: '/'})
     });
+    
 
 codeLibrary.controller('MainController',
-    function($scope, $location, auth) {
+    function($scope, $location, auth, $timeout) {
+        //Change navbar based on login or logout
         auth.onAuthStateChanged( (user) => {
             $scope.loggedIn = user;
-            console.log($scope.loggedIn);
         });
     }
 );

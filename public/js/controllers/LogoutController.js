@@ -1,14 +1,19 @@
 'use strict';
 
 codeLibrary.controller('LogoutController',
-    function($scope, $location, auth) {
-        $scope.user = auth.currentUser;
-        //console.log($scope.user);
-
+    function($scope, $location, $timeout, auth) {
         $scope.anonymousLogout = () => {
             auth.signOut();
-            console.log('Logged out!');
-            $location.path('/home');
+
+            //Alert user that they are logged out
+            bootbox.alert({
+                title: "Code Library",
+                message: "You are logged out!",
+                backdrop: true
+            });
+
+            //Set timeout to fix async issue
+            $timeout($location.path('/home'), 200);
         }
     }
 );
