@@ -15,17 +15,20 @@ codeLibrary.controller('HomeController',
 
         $scope.test = $firebaseObject(rootRef.child('HTML'));
         $scope.test2 = $firebaseArray(rootRef);
-        
+
         // console.log($scope.test.$id);
         // console.log($scope.test2);
 
-        var count = 0;
+        $scope.refs = [];
 
         $scope.show = () => {            
             $scope.topics.forEach( (value) => {
-                $scope[count] = $firebaseObject(rootRef);
-                console.log($scope[count]);
-                count++;
+                //$scope[count] = $firebaseObject(rootRef + '/' + value);
+                $scope.ref = firebase.database().ref('Languages/' + value);
+
+                $scope.ref.on('value', (snap) => {
+                    console.log(snap.name);
+                });
             });
         }
 
