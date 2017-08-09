@@ -1,7 +1,7 @@
 'use strict';
 //TODO: THREE WAY BINDING
 codeLibrary.controller('HomeController',
-    function($scope, $firebaseObject, $firebaseArray) {        
+    function($scope, $firebaseObject, $firebaseArray, $timeout) {        
         //Value to be added
         $scope.adding = {value: ''};
 
@@ -23,36 +23,32 @@ codeLibrary.controller('HomeController',
         console.log($scope.obj);
         console.log($scope.arr);
 
+        //$scope.keys.forEach( (key, index) => {
+            //$scope.arr[index];
+            //$scope.obj[key].name;
+        //});
+
 
         //Get all keys for refs
         $scope.keys = [];
         $scope.languages = [];
 
         rootRef.on('value', (snap) => {
-            snap.forEach( (currentSnap) => {
-                $scope.keys.push(currentSnap.key);
-                console.log(currentSnap.key);
-                console.log($scope.obj[currentSnap.key]);
+            snap.forEach( (language) => {
+                $scope.keys.push(language.key);
+                $scope.languages.push(language.val().name);
             });
         });
 
-        //Get results
-        $scope.show = () => {            
-            $scope.languages = [];
-
-            $scope.keys.forEach( (key, index) => {
-                //console.log($scope.arr[index]);
-                $scope.languages.push($scope.obj[key].name);
-            });
-        }
 
         //Get current key and index of clicked language
         $scope.currentKey = '';
         $scope.currentIndex = '';
 
-        $scope.currentLanguage = (lang) => {
+        $scope.select = () => {
+            console.log($scope.selectedLanguage);
             $scope.keys.forEach( (key, index) => {
-                if(lang == $scope.obj[key].name) {
+                if($scope.selectedLanguage == $scope.obj[key].name) {
                     $scope.currentKey = key;
                     $scope.currentIndex = index;
                 }

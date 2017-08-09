@@ -1,6 +1,10 @@
-<h1>Choose A Language</h1>
-
-<p ng-click="currentLanguage(language)" ng-repeat="language in languages">{{language}}</p>
+<div class="form-group">
+    <label for="languages">Choose a Language</label>
+    <select id="s1" class="form-control">
+        <option ng-change="select()" ng-model="selectedLanguage"
+            ng-repeat="language in languages">{{language}}</option>
+    </select>
+</div>
 
 <hr>  
 
