@@ -1,10 +1,8 @@
-<h1>Home</h1>
+<h1>Choose A Language</h1>
 
-<p>{{obj.$id}}</p>
+<p ng-click="currentLanguage(language)" ng-repeat="language in languages">{{language}}</p>
 
-<hr>
-
-<p ng-repeat="language in languages">{{language}}</p>
+<hr>  
 
 <input type="text" ng-model="adding.value" />
 <button class="btn btn-primary" ng-click="add()">Add</button>

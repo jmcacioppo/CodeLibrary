@@ -1,7 +1,7 @@
 'use strict';
 //TODO: THREE WAY BINDING
 codeLibrary.controller('HomeController',
-    function($scope, $firebaseObject, $firebaseArray, auth) {        
+    function($scope, $firebaseObject, $firebaseArray) {        
         //Value to be added
         $scope.adding = {value: ''};
 
@@ -26,9 +26,13 @@ codeLibrary.controller('HomeController',
 
         //Get all keys for refs
         $scope.keys = [];
+        $scope.languages = [];
+
         rootRef.on('value', (snap) => {
             snap.forEach( (currentSnap) => {
                 $scope.keys.push(currentSnap.key);
+                console.log(currentSnap.key);
+                console.log($scope.obj[currentSnap.key]);
             });
         });
 
@@ -36,14 +40,26 @@ codeLibrary.controller('HomeController',
         $scope.show = () => {            
             $scope.languages = [];
 
-            $scope.keys.forEach( (key) => {
-                //$scope[count] = $firebaseObject(rootRef + '/' + key);
+            $scope.keys.forEach( (key, index) => {
+                //console.log($scope.arr[index]);
                 $scope.languages.push($scope.obj[key].name);
             });
-
-            console.log($scope.languages);
         }
 
+        //Get current key and index of clicked language
+        $scope.currentKey = '';
+        $scope.currentIndex = '';
+
+        $scope.currentLanguage = (lang) => {
+            $scope.keys.forEach( (key, index) => {
+                if(lang == $scope.obj[key].name) {
+                    $scope.currentKey = key;
+                    $scope.currentIndex = index;
+                }
+            });
+
+            console.log('Current key and index', $scope.currentKey, $scope.currentIndex);
+        }
         
     }
 );
