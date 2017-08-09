@@ -1,5 +1,10 @@
 'use strict';
-//TODO: THREE WAY BINDING
+//TODO: Refactor javascript
+// put stuff in directives
+// fix databse so it has examples and syntax is different, get links too
+// fix add button so you can add to each language (use arr)
+// make a new tab where user can add a new language (use arr)
+
 codeLibrary.controller('HomeController',
     function($scope, $firebaseObject, $firebaseArray, $timeout) {        
         //Value to be added
@@ -53,7 +58,16 @@ codeLibrary.controller('HomeController',
                 }
             });
 
-            console.log('Current key and index', $scope.currentKey, $scope.currentIndex);
+            $scope.currentSyntax = [];
+            $scope.currentFunction = [];
+
+            $scope.languageUse = $scope.obj[$scope.currentKey].function;
+            Object.keys($scope.obj[$scope.currentKey].syntax)
+                .forEach( (current) => {
+                    $scope.currentSyntax.push(
+                        {"syntax" : $scope.obj[$scope.currentKey].syntax[current],
+                         "function" : current});
+                });
         }
         
     }
