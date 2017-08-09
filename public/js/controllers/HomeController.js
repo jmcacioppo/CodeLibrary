@@ -46,7 +46,6 @@ codeLibrary.controller('HomeController',
         $scope.currentIndex = '';
 
         $scope.select = () => {
-            console.log($scope.selectedLanguage);
             $scope.keys.forEach( (key, index) => {
                 if($scope.selectedLanguage == $scope.obj[key].name) {
                     $scope.currentKey = key;
