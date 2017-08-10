@@ -1,6 +1,5 @@
 'use strict';
 //TODO: Refactor javascript
-// fix databse so it has examples and syntax is different, get links too
 // fix add button so you can add to each language (use arr)
 // make a new tab where user can add a new language (use arr)
 
@@ -44,12 +43,20 @@ codeLibrary.controller('HomeController',
             });
         });
 
+        //Show the table if a language is selected, hide if not
+        if($scope.selectedLanguage) $scope.showLanguage = true;
+        else $scope.showLanguage = false;
 
         //Get current key and index of clicked language
         $scope.currentKey = '';
         $scope.currentIndex = '';
-
+        
         $scope.select = () => {
+            //Show the table if a language is selected, hide if not
+            if($scope.selectedLanguage) $scope.showLanguage = true;
+            else $scope.showLanguage = false;
+            
+            //Get key of selected item
             $scope.keys.forEach( (key, index) => {
                 if($scope.selectedLanguage == $scope.obj[key].name) {
                     $scope.currentKey = key;
@@ -57,15 +64,18 @@ codeLibrary.controller('HomeController',
                 }
             });
 
-            $scope.currentSyntax = [];
-            $scope.currentFunction = [];
+            //Get info needed for language purpose, website, and table
+            $scope.currentCode = [];
+            $scope.website = $scope.obj[$scope.currentKey].website;
+            $scope.languagePurpose = $scope.obj[$scope.currentKey].purpose;
 
-            $scope.languageUse = $scope.obj[$scope.currentKey].function;
-            Object.keys($scope.obj[$scope.currentKey].syntax)
+            Object.keys($scope.obj[$scope.currentKey].coding)
                 .forEach( (current) => {
-                    $scope.currentSyntax.push(
-                        {"syntax" : $scope.obj[$scope.currentKey].syntax[current],
-                         "function" : current});
+                    $scope.currentCode.push(
+                        {"syntax" : $scope.obj[$scope.currentKey].coding[current].syntax,
+                         "function" : $scope.obj[$scope.currentKey].coding[current].function,
+                         "example" : $scope.obj[$scope.currentKey].coding[current].example
+                        });
                 });
         }
         

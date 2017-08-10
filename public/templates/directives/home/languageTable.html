@@ -1,20 +1,21 @@
-<p><b>{{selectedLanguage}}</b> is used as: <b>{{languageUse}}</b></p>
+<div ng-show="showLanguage">
+    <p><b>{{selectedLanguage}}</b> is used as a: <b>{{languagePurpose}}</b></p>
+    <p>Find more info <a href="{{website}}" target="_blank">here</a></p>
 
-<table class="table table-striped table-hover ">
-    <thead>
-        <tr>
-            <th>Syntax</th>
-            <th>Function</th>
-            <th>Example</th>
-            <th>Link</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="syntax in currentSyntax">
-            <td>{{syntax.syntax}}</td>
-            <td>{{syntax.function}}</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-    </tbody>
-</table>
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Function</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="code in currentCode">
+                <td>{{code.syntax}}</td>
+                <td>{{code.function}}</td>
+                <td>{{code.example}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
