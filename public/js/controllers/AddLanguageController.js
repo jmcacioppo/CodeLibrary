@@ -1,7 +1,5 @@
 'use strict';
-
 //TODO: make purpose a dropdown, radio, etc.
-
 
 codeLibrary.controller('AddLanguageController',
     function($scope, $firebaseObject, $firebaseArray, $timeout) {   

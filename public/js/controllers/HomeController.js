@@ -1,5 +1,7 @@
 'use strict';
-//TODO: fix add button so you can add to each language (use arr)
+//TODO: use arr to implement 'add to language' button
+// add some sorting of the language syntaxes
+// add search feature
 
 codeLibrary.controller('HomeController',
     function($scope, $firebaseObject, $firebaseArray, $timeout) {        
