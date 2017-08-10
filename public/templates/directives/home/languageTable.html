@@ -1,8 +1,16 @@
 <div ng-show="showLanguage">
-    <p><b>{{selectedLanguage}}</b> is used as a: <b>{{languagePurpose}}</b></p>
-    <p>Find more info <a href="{{website}}" target="_blank">here</a></p>
+    <div class="container">
+        <div class="col-md-9">
+            <b>{{selectedLanguage}}</b> is used as a: <b>{{languagePurpose}}</b>
+        </div>
+        <div class="col-md-3">
+            Find more information <a href="{{website}}" target="_blank">here</a>
+        </div>
+    </div>
 
-    <table class="table table-striped table-hover ">
+    <br> <br>
+
+    <table class="table table-striped table-hover box-shadow--6dp">
         <thead>
             <tr>
                 <th>Name</th>

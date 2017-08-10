@@ -1,37 +1,11 @@
-<form class="form-horizontal">
+<form class="form-horizontal" ng-submit="add()" >
     <fieldset>
+
         <legend>Add Language</legend>
 
-        <!--NAME-->
-        <div class="form-group">
-            <label for="name" class="col-md-2 control-label">Language Name</label>
-            <div class="col-md-10">
-            <input class="form-control" placeholder="Javascript, Python, C, etc.">
-            </div>
-        </div>
+        <form-fields></form-fields>
 
-        <!--PURPOSE-->
-        <div class="form-group">
-            <label for="purpose" class="col-md-2 control-label">Kind of Language</label>
-            <div class="col-md-10">
-                <input class="form-control" placeholder="Object-oriented, markup, styling, etc.">
-            </div>
-        </div>
+        <button type="submit" class="btn btn-primary" style="float:right">Submit</button>
 
-        <!--WEBSITE-->
-        <div class="form-group">
-            <label for="purpose" class="col-md-2 control-label">Language Website</label>
-            <div class="col-md-10">
-                <input class="form-control" placeholder="www.website.com">
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <div class="col-md-10 col-md-offset-2">
-                <button type="button" class="btn btn-default">Cancel</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
     </fieldset>
 </form>

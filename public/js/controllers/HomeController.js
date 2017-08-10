@@ -8,7 +8,7 @@ codeLibrary.controller('HomeController',
         $scope.arr = $firebaseArray(rootRef); // Firebase Array - $scope.arr[index]
         $scope.currentKey = ''; // Key of selected language (for obj)
         $scope.currentIndex = ''; // Index of selected language (for arr)
-        $scope.adding = {value: ''}; // Value to be added
+        
         
         getKeys();
         checkSelected();
@@ -18,11 +18,6 @@ codeLibrary.controller('HomeController',
             checkSelected();
             getSelectedLanguage();
             getLanguageInfo();
-        }
-
-        // Called on click of 'Add' button
-        $scope.add = () => {
-            add();
         }
 
 
@@ -69,17 +64,6 @@ codeLibrary.controller('HomeController',
                          "example" : $scope.obj[$scope.currentKey].coding[current].example
                         });
                 });
-        }
-
-        // Function to add a language to the database
-        function add() {
-            $scope.arr.$add({"name" : $scope.adding.value})
-            .then( () => {
-                console.log('Added!');
-            })
-            .catch( (error) => {
-                console.log(error.message);
-            });
         }
     }
 );
