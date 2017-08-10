@@ -5,66 +5,60 @@
 
 codeLibrary.controller('HomeController',
     function($scope, $firebaseObject, $firebaseArray, $timeout) {        
-        //Value to be added
-        $scope.adding = {value: ''};
+        //Initialize variables
+        $scope.obj = $firebaseObject(rootRef); // Firebase Object - $scope.obj[key]
+        $scope.arr = $firebaseArray(rootRef); // Firebase Array - $scope.arr[index]
+        $scope.currentKey = ''; // Key of selected language (for obj)
+        $scope.currentIndex = ''; // Index of selected language (for arr)
+        $scope.adding = {value: ''}; // Value to be added
+        
+        getKeys();
+        checkSelected();
 
-        //Add function
+        // Called on change of option selected in dropdown
+        $scope.select = () => {
+            checkSelected();
+            getSelectedLanguage();
+            getLanguageInfo();
+        }
+
+        // Called on click of 'Add' button
         $scope.add = () => {
-            $scope.arr.$add({"name" : $scope.adding.value})
-            .then( () => {
-                console.log('Added!');
-            })
-            .catch( (error) => {
-                console.log(error.message);
+            add();
+        }
+
+
+        // Get all keys for refs
+        function getKeys() {
+            $scope.keys = [];
+            $scope.languages = [];
+
+            rootRef.on('value', (snap) => {
+                snap.forEach( (language) => {
+                    $scope.keys.push(language.key);
+                    $scope.languages.push(language.val().name);
+                });
             });
         }
-        
 
-        $scope.obj = $firebaseObject(rootRef);
-        $scope.arr = $firebaseArray(rootRef);
-
-        console.log($scope.obj);
-        console.log($scope.arr);
-
-        //$scope.keys.forEach( (key, index) => {
-            //$scope.arr[index];
-            //$scope.obj[key].name;
-        //});
-
-
-        //Get all keys for refs
-        $scope.keys = [];
-        $scope.languages = [];
-
-        rootRef.on('value', (snap) => {
-            snap.forEach( (language) => {
-                $scope.keys.push(language.key);
-                $scope.languages.push(language.val().name);
-            });
-        });
-
-        //Show the table if a language is selected, hide if not
-        if($scope.selectedLanguage) $scope.showLanguage = true;
-        else $scope.showLanguage = false;
-
-        //Get current key and index of clicked language
-        $scope.currentKey = '';
-        $scope.currentIndex = '';
-        
-        $scope.select = () => {
-            //Show the table if a language is selected, hide if not
+        // Show table if language is selected
+        function checkSelected() {
             if($scope.selectedLanguage) $scope.showLanguage = true;
             else $scope.showLanguage = false;
-            
-            //Get key of selected item
+        }
+        
+        // Get key and index of selected item
+        function getSelectedLanguage() {
             $scope.keys.forEach( (key, index) => {
                 if($scope.selectedLanguage == $scope.obj[key].name) {
                     $scope.currentKey = key;
                     $scope.currentIndex = index;
                 }
             });
+        }
 
-            //Get info needed for language purpose, website, and table
+        //Get info needed for language purpose, website, and table
+        function getLanguageInfo() {
             $scope.currentCode = [];
             $scope.website = $scope.obj[$scope.currentKey].website;
             $scope.languagePurpose = $scope.obj[$scope.currentKey].purpose;
@@ -78,6 +72,16 @@ codeLibrary.controller('HomeController',
                         });
                 });
         }
-        
+
+        // Function to add a language to the database
+        function add() {
+            $scope.arr.$add({"name" : $scope.adding.value})
+            .then( () => {
+                console.log('Added!');
+            })
+            .catch( (error) => {
+                console.log(error.message);
+            });
+        }
     }
 );
