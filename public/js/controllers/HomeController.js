@@ -1,7 +1,5 @@
 'use strict';
-//TODO: Refactor javascript
-// fix add button so you can add to each language (use arr)
-// make a new tab where user can add a new language (use arr)
+//TODO: fix add button so you can add to each language (use arr)
 
 codeLibrary.controller('HomeController',
     function($scope, $firebaseObject, $firebaseArray, $timeout) {        

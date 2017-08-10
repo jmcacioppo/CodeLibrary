@@ -5,14 +5,11 @@ var codeLibrary = angular.module('codeLibrary',  ['ngRoute', 'firebase'])
         $routeProvider
         .when('/', {
             templateUrl: 'templates/home.html',
-            controller: 'HomeController',
-            resolve: { //Inject data before it is completely loaded
-                data : (rootRef, $firebaseObject, auth) => {
-                    // return auth.requireSignIn().then( () => {
-                        return $firebaseObject(rootRef.child('HTML')).$loaded();
-                    // });
-                }
-            }
+            controller: 'HomeController'
+        })
+        .when('/addLanguage', {
+            templateUrl: 'templates/addLanguage.html',
+            controller: 'AddLanguageController'
         })
         .when('/login', {
             templateUrl: 'templates/login.html',
