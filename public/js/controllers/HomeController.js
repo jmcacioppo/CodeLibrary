@@ -1,6 +1,5 @@
 'use strict';
 //TODO: Refactor javascript
-// put stuff in directives
 // fix databse so it has examples and syntax is different, get links too
 // fix add button so you can add to each language (use arr)
 // make a new tab where user can add a new language (use arr)

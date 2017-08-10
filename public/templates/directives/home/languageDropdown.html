@@ -1,0 +1,7 @@
+<div class="form-group">
+    <label for="languages">Choose a Language</label>
+    <select class="form-control" ng-change="select()" 
+        ng-model="selectedLanguage">
+        <option ng-repeat="language in languages">{{language}}</option>
+    </select>
+</div>
