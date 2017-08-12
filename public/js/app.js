@@ -4,9 +4,9 @@ var codeLibrary = angular.module('codeLibrary',  ['ngRoute', 'firebase'])
     .config(function($routeProvider) {
         $routeProvider
         .when('/', {
-            templateUrl: 'templates/home.html',
-            controller: 'HomeController',
-            activetab: 'home'
+            templateUrl: 'templates/theLibrary.html',
+            controller: 'TheLibraryController',
+            activetab: 'theLibrary'
         })
         .when('/addLanguage', {
             templateUrl: 'templates/addLanguage.html',

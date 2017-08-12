@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="col-md-3">
+        <p style="text-align:center;">
+            <b>{{selectedLanguage}}</b> is used as: <b>{{languagePurpose}}</b>
+        </p>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group" style="margin: 0 auto;">
+            <label for="languageSort">Sort by</label>
+            <select class="form-control" ng-model="selectedSort">
+                <option ng-repeat="type in sortType">{{type}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <p style="text-align:center;">
+            Find more information <a href="{{website}}" target="_blank">here</a>
+        </p>
+    </div>
+</div>

@@ -3,6 +3,6 @@
 codeLibrary.directive('languageDropdown', function($compile) {
     return {
         restrict: 'E',
-        templateUrl: 'templates/directives/home/languageDropdown.html'
+        templateUrl: 'templates/directives/theLibrary/languageDropdown.html'
     }
 });

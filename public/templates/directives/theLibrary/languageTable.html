@@ -1,0 +1,21 @@
+<table class="table table-striped table-hover box-shadow--6dp">
+    <thead>
+        <tr>
+            <th>Syntax</th>
+            <th>Function</th>
+            <th>Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="code in currentCode | orderBy: selectedSort">
+            <td>{{code.syntax}}</td>
+            <td>{{code.function}}</td>
+            <td>{{code.example}}</td>
+        </tr>
+        <tr>
+            <td><input type="text" placeholder="Syntax" ng-model="add.syntax"></td>
+            <td><input type="text" placeholder="Function" ng-model="add.function"></td>
+            <td><input type="text" placeholder="Example" ng-model="add.example"></td>
+        </tr>
+    </tbody>
+</table>

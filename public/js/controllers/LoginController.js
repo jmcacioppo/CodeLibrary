@@ -13,7 +13,7 @@ codeLibrary.controller('LoginController',
                 });
 
                 //Set timeout to fix async issue
-                $timeout($location.path('/home'), 200);
+                $timeout($location.path('/theLibrary'), 200);
             })
             .catch( (err) => {
                 console.log(err.code);
