@@ -1,6 +1,5 @@
 'use strict';
-//TODO: use arr to implement 'add to language' button
-// add some sorting of the language syntaxes
+//TODO: add some sorting of the language syntaxes
 // add search feature
 
 codeLibrary.controller('HomeController',
@@ -10,15 +9,11 @@ codeLibrary.controller('HomeController',
         $scope.arr = $firebaseArray(rootRef); // Firebase Array - $scope.arr[index]
         $scope.currentKey = ''; // Key of selected language (for obj)
         $scope.currentIndex = ''; // Index of selected language (for arr)
-        $scope.add = {
-            'syntax' : '',
-            'function' : '',
-            'example' : ''
-        }
         
-        
+        initializeInputs();
         getKeys();
         checkSelected();
+
 
         // Called on change of option selected in dropdown
         $scope.select = () => {
@@ -27,36 +22,12 @@ codeLibrary.controller('HomeController',
             getLanguageInfo();
         }
 
+        // Add new parts of language
         $scope.addToLanguage = () => {
-            console.log(rootRef + '/' + $scope.currentKey + '/coding');
-            $scope.addingArr = $firebaseArray(rootRef + '/' + $scope.currentKey + '/coding');
-            console.log($scope.addingArr);
-            // $scope.addingArr
-            //     .$add({
-            //         syntax : $scope.add.syntax,
-            //         function : $scope.add.function,
-            //         example : $scope.add.example
-            //     })
-            //     .then( () => {
-            //         bootbox.alert({
-            //             title: "Code Library",
-            //             message: $scope.add.syntax + " has been added",
-            //             backdrop: true
-            //         });
-            //     })
-            //     .catch( () => {
-            //         bootbox.alert({
-            //             title: "Code Library",
-            //             message: $scope.add.syntax + " has NOT been added. Try again.",
-            //             backdrop: true
-            //         });
-            //     });
-
-            $scope.add = {
-                'syntax' : '',
-                'function' : '',
-                'example' : ''
-            }
+            getArr();
+            addToArr();
+            updateTable();
+            initializeInputs();
         }
 
 
@@ -102,6 +73,50 @@ codeLibrary.controller('HomeController',
                          "function" : $scope.obj[$scope.currentKey].coding[current].function,
                          "example" : $scope.obj[$scope.currentKey].coding[current].example
                         });
+                });
+        }
+
+        function initializeInputs() {
+            $scope.add = {
+                'syntax' : '',
+                'function' : '',
+                'example' : ''
+            }
+        }
+
+        function getArr() {
+            var addingRef = firebase.database().ref('Languages/' + $scope.currentKey + '/coding');
+            $scope.addingArr = $firebaseArray(addingRef);
+        }
+
+        function addToArr() {
+            $scope.addingArr
+                .$add({
+                    syntax : $scope.add.syntax,
+                    function : $scope.add.function,
+                    example : $scope.add.example
+                })
+                .then( () => {
+                    bootbox.alert({
+                        title: "Code Library",
+                        message: "Your code has been added!",
+                        backdrop: true
+                    });
+                })
+                .catch( () => {
+                    bootbox.alert({
+                        title: "Code Library",
+                        message: "Your code has NOT been added. Try again.",
+                        backdrop: true
+                    });
+                });
+        }
+
+        function updateTable() {
+            $scope.currentCode.push(
+                {"syntax" : $scope.add.syntax,
+                    "function" : $scope.add.function,
+                    "example" : $scope.add.example
                 });
         }
     }
