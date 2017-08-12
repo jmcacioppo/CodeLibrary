@@ -31,6 +31,8 @@ codeLibrary.controller('MainController',
     function($scope, auth, $route) {
         $scope.$route = $route;
         
+        $scope.search = {value : ''};
+
         //Change navbar based on login or logout
         auth.onAuthStateChanged( (user) => {
             $scope.loggedIn = user;

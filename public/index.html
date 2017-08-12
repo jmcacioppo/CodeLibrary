@@ -20,6 +20,12 @@
                     <li ng-class="{active: $route.current.activetab == 'login'}"><a ng-hide='loggedIn' href="#!/login">Login</a></li>
                     <li ng-class="{active: $route.current.activetab == 'logout'}"><a ng-show='loggedIn' href="#!/logout">Logout</a></li>
                 </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control col-md-8" 
+                            ng-model="search.value" placeholder="Search">
+                    </div>
+                </form>
             </div>
         </nav>
 
