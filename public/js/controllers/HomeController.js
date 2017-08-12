@@ -10,6 +10,11 @@ codeLibrary.controller('HomeController',
         $scope.arr = $firebaseArray(rootRef); // Firebase Array - $scope.arr[index]
         $scope.currentKey = ''; // Key of selected language (for obj)
         $scope.currentIndex = ''; // Index of selected language (for arr)
+        $scope.add = {
+            'syntax' : '',
+            'function' : '',
+            'example' : ''
+        }
         
         
         getKeys();
@@ -20,6 +25,38 @@ codeLibrary.controller('HomeController',
             checkSelected();
             getSelectedLanguage();
             getLanguageInfo();
+        }
+
+        $scope.addToLanguage = () => {
+            console.log(rootRef + '/' + $scope.currentKey + '/coding');
+            $scope.addingArr = $firebaseArray(rootRef + '/' + $scope.currentKey + '/coding');
+            console.log($scope.addingArr);
+            // $scope.addingArr
+            //     .$add({
+            //         syntax : $scope.add.syntax,
+            //         function : $scope.add.function,
+            //         example : $scope.add.example
+            //     })
+            //     .then( () => {
+            //         bootbox.alert({
+            //             title: "Code Library",
+            //             message: $scope.add.syntax + " has been added",
+            //             backdrop: true
+            //         });
+            //     })
+            //     .catch( () => {
+            //         bootbox.alert({
+            //             title: "Code Library",
+            //             message: $scope.add.syntax + " has NOT been added. Try again.",
+            //             backdrop: true
+            //         });
+            //     });
+
+            $scope.add = {
+                'syntax' : '',
+                'function' : '',
+                'example' : ''
+            }
         }
 
 

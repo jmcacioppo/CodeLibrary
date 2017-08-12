@@ -20,7 +20,6 @@ codeLibrary.controller('AddLanguageController',
 
         // Function to add a language to the database
         function add() {
-            console.log('called');
             $scope.arr.$add({
                 "name" : $scope.adding.name,
                 "purpose" : $scope.adding.purpose,
