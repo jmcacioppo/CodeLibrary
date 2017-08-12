@@ -1,10 +1,22 @@
 <div ng-show="showLanguage">
     <div class="container">
-        <div class="col-md-9">
-            <b>{{selectedLanguage}}</b> is used as a: <b>{{languagePurpose}}</b>
+        <div class="col-md-3">
+            <p style="text-align:center;">
+                <b>{{selectedLanguage}}</b> is used as a: <b>{{languagePurpose}}</b>
+            </p>
         </div>
         <div class="col-md-3">
-            Find more information <a href="{{website}}" target="_blank">here</a>
+            <div class="form-group" style="margin: 0 auto;">
+                <label for="languageSort">Sort by</label>
+                <select class="form-control" ng-model="selectedSort">
+                    <option ng-repeat="type in sortType">{{type}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <p style="text-align:center;">
+                Find more information <a href="{{website}}" target="_blank">here</a>
+            </p>
         </div>
     </div>
 
@@ -19,7 +31,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="code in currentCode">
+            <tr ng-repeat="code in currentCode | orderBy: selectedSort">
                 <td>{{code.syntax}}</td>
                 <td>{{code.function}}</td>
                 <td>{{code.example}}</td>

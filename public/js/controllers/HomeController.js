@@ -1,14 +1,16 @@
 'use strict';
 //TODO: add some sorting of the language syntaxes
-// add search feature
 
 codeLibrary.controller('HomeController',
     function($scope, $firebaseObject, $firebaseArray, $timeout) {        
         //Initialize variables
         $scope.obj = $firebaseObject(rootRef); // Firebase Object - $scope.obj[key]
         $scope.arr = $firebaseArray(rootRef); // Firebase Array - $scope.arr[index]
+
         $scope.currentKey = ''; // Key of selected language (for obj)
         $scope.currentIndex = ''; // Index of selected language (for arr)
+
+        $scope.sortType = ['nothing' ,'syntax', 'function', 'example'];
         
         initializeInputs();
         getKeys();
