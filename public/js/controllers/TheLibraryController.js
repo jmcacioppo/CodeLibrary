@@ -1,5 +1,5 @@
 'use strict';
-//TODO: add some sorting of the language syntaxes
+//TODO: add editing of fields feature
 
 codeLibrary.controller('TheLibraryController',
     function($scope, $firebaseObject, $firebaseArray, $timeout) {        
@@ -29,6 +29,18 @@ codeLibrary.controller('TheLibraryController',
             addToArr();
             updateTable();
             initializeInputs();
+        }
+
+        $scope.edit = (data, type) => {
+            Object.keys($scope.obj[$scope.currentKey].coding)
+                .forEach( (current) => {
+                    if(data == $scope.obj[$scope.currentKey].coding[current][type])
+                        alert(data);
+                });
+        }
+
+        $scope.fixSort = () => {
+            $scope.selectedSort = $scope.sorting + '.name';
         }
 
 
@@ -70,18 +82,29 @@ codeLibrary.controller('TheLibraryController',
             Object.keys($scope.obj[$scope.currentKey].coding)
                 .forEach( (current) => {
                     $scope.currentCode.push(
-                        {"syntax" : $scope.obj[$scope.currentKey].coding[current].syntax,
-                         "function" : $scope.obj[$scope.currentKey].coding[current].function,
-                         "example" : $scope.obj[$scope.currentKey].coding[current].example
-                        });
+                        {
+                            "syntax" : {
+                                "name" : $scope.obj[$scope.currentKey].coding[current].syntax,
+                                "editing" : false
+                            },
+                            "function" : {
+                                "name" : $scope.obj[$scope.currentKey].coding[current].function,
+                                "editing" : false
+                            },
+                            "example" : {
+                                "name" : $scope.obj[$scope.currentKey].coding[current].example,
+                                "editing" : false
+                            }
+                        }
+                    );
                 });
         }
 
         function initializeInputs() {
             $scope.add = {
-                'syntax' : '',
-                'function' : '',
-                'example' : ''
+                'syntax' : { name : '', editing : false },
+                'function' : { name : '', editing : false },
+                'example' : { name : '', editing : false }
             }
         }
 
@@ -93,9 +116,9 @@ codeLibrary.controller('TheLibraryController',
         function addToArr() {
             $scope.addingArr
                 .$add({
-                    syntax : $scope.add.syntax,
-                    function : $scope.add.function,
-                    example : $scope.add.example
+                    syntax : $scope.add.syntax.name,
+                    function : $scope.add.function.name,
+                    example : $scope.add.example.name
                 })
                 .then( () => {
                     bootbox.alert({
@@ -115,10 +138,21 @@ codeLibrary.controller('TheLibraryController',
 
         function updateTable() {
             $scope.currentCode.push(
-                {"syntax" : $scope.add.syntax,
-                    "function" : $scope.add.function,
-                    "example" : $scope.add.example
-                });
+                {
+                    "syntax" : {
+                        "name" : $scope.add.syntax.name,
+                        "editing" : false
+                    },
+                    "function" : {
+                        "name" : $scope.add.function.name,
+                        "editing" : false
+                    },
+                    "example" : {
+                        "name" : $scope.add.example.name,
+                        "editing" : false
+                    }
+                }
+            );
         }
     }
 );

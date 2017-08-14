@@ -27,7 +27,6 @@ var codeLibrary = angular.module('codeLibrary',  ['ngRoute', 'firebase'])
     });
     
 //TODO: app can actually search
-// move the search button up a bit for the navbar to look better
 codeLibrary.controller('MainController',
     function($scope, auth, $route) {
         $scope.$route = $route;

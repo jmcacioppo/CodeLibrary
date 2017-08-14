@@ -8,7 +8,7 @@
     <div class="col-md-3">
         <div class="form-group" style="margin: 0 auto;">
             <label for="languageSort">Sort by</label>
-            <select class="form-control" ng-model="selectedSort">
+            <select class="form-control" ng-change="fixSort()" ng-model="sorting">
                 <option ng-repeat="type in sortType">{{type}}</option>
             </select>
         </div>
