@@ -32,11 +32,18 @@ codeLibrary.controller('TheLibraryController',
         }
 
         $scope.edit = (data, type) => {
+            data.editing = true;
+            $scope.add[type].name = data.name;
+
             Object.keys($scope.obj[$scope.currentKey].coding)
                 .forEach( (current) => {
-                    if(data == $scope.obj[$scope.currentKey].coding[current][type])
-                        alert(data);
+                    if(data.name == $scope.obj[$scope.currentKey].coding[current][type])
+                        alert(data.name);
                 });
+        }
+
+        $scope.doneEditing = (data) => {
+            data.editing = false;
         }
 
         $scope.fixSort = () => {

@@ -8,14 +8,26 @@
     </thead>
     <tbody>
         <tr ng-repeat="code in currentCode | orderBy: selectedSort">
-            <td ng-dblclick="edit(code.syntax.name, 'syntax')">
-                <span>{{code.syntax.name}}</span>
+            <td ng-dblclick="edit(code.syntax, 'syntax')">
+                <span ng-hide="code.syntax.editing">{{code.syntax.name}}</span>
+
+                <input ng-show="code.syntax.editing" 
+                        ng-blur="doneEditing(code.syntax)"
+                        ng-model="add.syntax.name" type="text">
             </td>
-            <td ng-dblclick="edit(code.function.name, 'function')">
-                <span>{{code.function.name}}</span>
+            <td ng-dblclick="edit(code.function, 'function')">
+                <span ng-hide="code.function.editing">{{code.function.name}}</span>
+
+                <input ng-show="code.function.editing" 
+                        ng-blur="doneEditing(code.function)"
+                        ng-model="add.function.name" type="text">
             </td>
-            <td ng-dblclick="edit(code.example.name, 'example')">
-                <span>{{code.example.name}}</span>
+            <td ng-dblclick="edit(code.example, 'example')">
+                <span ng-hide="code.example.editing">{{code.example.name}}</span>
+
+                <input ng-show="code.example.editing" 
+                        ng-blur="doneEditing(code.example)"
+                        ng-model="add.example.name" type="text">
             </td>
         </tr>
         <tr>
