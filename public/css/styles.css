@@ -1,3 +1,4 @@
+/*FOOTER*/
 html, body {
 	margin:0;
 	padding:0;
@@ -23,18 +24,9 @@ html, body {
     text-align: center;
     color: white;
 }
+/*END FOOTER*/
 
+/*ADDS SHADOW TO BOX*/
 .box-shadow--6dp {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 6px 9px rgba(0, 0, 0, 0.2);
-}
-
-input[name=search] {
-    width: 130px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-}
-
-/* When the input field gets focus, change its width to 100% */
-input[name=search]:focus {
-    width: 100%;
 }

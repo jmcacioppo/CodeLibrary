@@ -12,42 +12,12 @@
     <body class="container" ng-controller="MainController">
         <div id="app">
             <div id="content">
-                <nav class="navbar navbar-default">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="#!/">Code Library</a>
-                        </div>
-                        <ul class="nav navbar-nav">
-                            <li ng-class="{active: $route.current.activetab == 'theLibrary'}"><a href="#!/">The Library</a></li>
-                            <li ng-class="{active: $route.current.activetab == 'addLanguage'}"><a href="#!/addLanguage">Add Language</a></li>
-                            <li ng-class="{active: $route.current.activetab == 'login'}"><a ng-hide='loggedIn' href="#!/login">Login</a></li>
-                            <li ng-class="{active: $route.current.activetab == 'logout'}"><a ng-show='loggedIn' href="#!/logout">Logout</a></li>
-                        </ul>
-
-                        <form ng-submit="getSearch()" class="navbar-form" role="search">
-                            <div class="input-group">
-                                <input type="text" class="form-control" ng-model="search.value"
-                                    placeholder="Search" name="search">
-                                <div class="input-group-btn" style="margin-top:50px;">
-                                    <button class="btn btn-default" type="submit">
-                                        <i class="glyphicon glyphicon-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </nav>
+                <navbar></navbar>
 
                 <ng-view></ng-view>
             </div>
 
-            <footer id="footer">
-                <div class="footer-copyright">
-                    <div class="container-fluid"> <br>
-                        Made with <i class="glyphicon glyphicon-heart"></i>
-                    </div>
-                </div>
-            </footer>
+            <my-footer></my-footer>
         </div>
 
         <script src="/lib/angular.js"></script>
@@ -66,6 +36,8 @@
         <script src="/js/config.js"></script>
         <script src="/js/auth.js"></script>
 
+        <script src="/js/directives/navbar.js"></script>
+        <script src="/js/directives/myFooter.js"></script>
         <script src="/js/directives/theLibrary/languageDropdown.js"></script>
         <script src="/js/directives/theLibrary/languageInfo.js"></script>
         <script src="/js/directives/theLibrary/languageTable.js"></script>
