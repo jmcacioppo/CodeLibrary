@@ -37,8 +37,16 @@ codeLibrary.controller('TheLibraryController',
 
             Object.keys($scope.obj[$scope.currentKey].coding)
                 .forEach( (current) => {
-                    if(data.name == $scope.obj[$scope.currentKey].coding[current][type])
-                        alert(data.name);
+                    if(data.name == $scope.obj[$scope.currentKey].coding[current][type]) {
+                        
+                        // $scope.obj.$save()
+                        //     .then( (ref) => {
+                        //         console.log(ref);
+                        //     })
+                        //     .catch( (err) => {
+                        //         console.log(err);
+                        //     });
+                    }
                 });
         }
 
