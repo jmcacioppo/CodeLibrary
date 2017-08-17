@@ -9,10 +9,11 @@
 
 <!--PURPOSE-->
 <div class="form-group">
-    <label for="purpose" class="col-md-2 control-label">Kind of Language</label>
+    <label for="purpose" class="col-md-2 control-label">Purpose of Language</label>
     <div class="col-md-10">
-        <input class="form-control" ng-model="adding.purpose"
-            placeholder="Object-oriented, markup, styling, etc.">
+        <select class="form-control" ng-model="adding.purpose">
+            <option ng-repeat="purpose in purposes | orderBy: purpose">{{purpose}}</option>
+        </select>
     </div>
 </div>
 

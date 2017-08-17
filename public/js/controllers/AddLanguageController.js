@@ -6,9 +6,17 @@ codeLibrary.controller('AddLanguageController',
         // Values to be added
         $scope.adding = {
             name : '',
-            purpose : '',
+            purpose : 'General-purpose programming language',
             website : ''
         };
+
+        $scope.purposes = 
+            [
+                'General-purpose programming language', 
+                'Object-oriented programming language', 
+                'Markup language', 
+                'Styling language'
+            ];
 
         // Firebase Array - $scope.arr[index]
         $scope.arr = $firebaseArray(rootRef); 
