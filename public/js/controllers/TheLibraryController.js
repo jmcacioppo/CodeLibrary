@@ -1,5 +1,4 @@
 'use strict';
-//TODO: add editing of fields feature
 
 codeLibrary.controller('TheLibraryController',
     function($scope, $firebaseObject, $firebaseArray, $timeout) {        
@@ -31,47 +30,21 @@ codeLibrary.controller('TheLibraryController',
             initializeInputs();
         }
 
+        // Makes field edittable for user and gets info of the data they are editting
         $scope.edit = (data, type) => {
             data.editing = true;
-            $scope.add[type].name = data.name;
-
-            Object.keys($scope.obj[$scope.currentKey].coding)
-                .forEach( (current) => {
-                    if(data.name == $scope.obj[$scope.currentKey].coding[current][type]) {
-                        $scope.editCurrent = current;
-                        $scope.editType = type;
-                    }
-                });
+            findDataToEdit(data, type);
         }
 
-
+        // Saves user changes
         $scope.doneEditing = (data) => {
             var current = $scope.editCurrent;
             var type = $scope.editType;
-
-            $scope.obj[$scope.currentKey].coding[current][type] = $scope.edit[type];
-
-            $scope.obj.$save()
-                .then( () => {
-                    bootbox.alert({
-                        title: "Code Library",
-                        message: "Your code has been saved!",
-                        backdrop: true
-                    });
-
-                    getLanguageInfo()
-                })
-                .catch( () => {
-                    bootbox.alert({
-                        title: "Code Library",
-                        message: "Your code has NOT been saved. Try again.",
-                        backdrop: true
-                    });
-                });
-
+            saveEdit(current, type);
             data.editing = false;
         }
 
+        // Adds '.name' to end of selected sort so that it works with object
         $scope.fixSort = () => {
             $scope.selectedSort = $scope.sorting + '.name';
         }
@@ -106,7 +79,7 @@ codeLibrary.controller('TheLibraryController',
             });
         }
 
-        //Get info needed for language purpose, website, and table
+        // Get info needed for language purpose, website, and table
         function getLanguageInfo() {
             $scope.currentCode = [];
             $scope.website = $scope.obj[$scope.currentKey].website;
@@ -133,6 +106,7 @@ codeLibrary.controller('TheLibraryController',
                 });
         }
 
+        // Initialize inputs for adding to language
         function initializeInputs() {
             $scope.add = {
                 'syntax' : { name : '', editing : false },
@@ -141,11 +115,13 @@ codeLibrary.controller('TheLibraryController',
             }
         }
 
+        // Get array for adding to language
         function getArr() {
             var addingRef = firebase.database().ref('Languages/' + $scope.currentKey + '/coding');
             $scope.addingArr = $firebaseArray(addingRef);
         }
 
+        // Adds info to firebase
         function addToArr() {
             $scope.addingArr
                 .$add({
@@ -169,6 +145,7 @@ codeLibrary.controller('TheLibraryController',
                 });
         }
 
+        // Update table after addition to database
         function updateTable() {
             $scope.currentCode.push(
                 {
@@ -187,5 +164,41 @@ codeLibrary.controller('TheLibraryController',
                 }
             );
         }
+
+        // Gets data that user is editting
+        function findDataToEdit(data, type) {
+            Object.keys($scope.obj[$scope.currentKey].coding)
+                .forEach( (current) => {
+                    if(data.name == $scope.obj[$scope.currentKey].coding[current][type]) {
+                        $scope.editCurrent = current;
+                        $scope.editType = type;
+                        $scope.edit[type] = data.name;
+                    }
+                });
+        }
+
+        // Saves change by user
+        function saveEdit(current, type) {
+            $scope.obj[$scope.currentKey].coding[current][type] = $scope.edit[type];
+
+            $scope.obj.$save()
+                .then( () => {
+                    bootbox.alert({
+                        title: "Code Library",
+                        message: "Your code has been saved!",
+                        backdrop: true
+                    });
+
+                    getLanguageInfo()
+                })
+                .catch( () => {
+                    bootbox.alert({
+                        title: "Code Library",
+                        message: "Your code has NOT been saved. Try again.",
+                        backdrop: true
+                    });
+                });
+        }
+
     }
 );
