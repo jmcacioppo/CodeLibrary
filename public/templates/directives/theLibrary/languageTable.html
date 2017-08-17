@@ -13,21 +13,21 @@
 
                 <input ng-show="code.syntax.editing" 
                         ng-blur="doneEditing(code.syntax)"
-                        ng-model="add.syntax.name" type="text">
+                        ng-model="edit.syntax" type="text">
             </td>
             <td ng-dblclick="edit(code.function, 'function')">
                 <span ng-hide="code.function.editing">{{code.function.name}}</span>
 
                 <input ng-show="code.function.editing" 
                         ng-blur="doneEditing(code.function)"
-                        ng-model="add.function.name" type="text">
+                        ng-model="edit.function" type="text">
             </td>
             <td ng-dblclick="edit(code.example, 'example')">
                 <span ng-hide="code.example.editing">{{code.example.name}}</span>
 
                 <input ng-show="code.example.editing" 
                         ng-blur="doneEditing(code.example)"
-                        ng-model="add.example.name" type="text">
+                        ng-model="edit.example" type="text">
             </td>
         </tr>
         <tr>

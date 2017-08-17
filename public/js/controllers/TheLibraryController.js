@@ -38,19 +38,37 @@ codeLibrary.controller('TheLibraryController',
             Object.keys($scope.obj[$scope.currentKey].coding)
                 .forEach( (current) => {
                     if(data.name == $scope.obj[$scope.currentKey].coding[current][type]) {
-                        
-                        // $scope.obj.$save()
-                        //     .then( (ref) => {
-                        //         console.log(ref);
-                        //     })
-                        //     .catch( (err) => {
-                        //         console.log(err);
-                        //     });
+                        $scope.editCurrent = current;
+                        $scope.editType = type;
                     }
                 });
         }
 
+
         $scope.doneEditing = (data) => {
+            var current = $scope.editCurrent;
+            var type = $scope.editType;
+
+            $scope.obj[$scope.currentKey].coding[current][type] = $scope.edit[type];
+
+            $scope.obj.$save()
+                .then( () => {
+                    bootbox.alert({
+                        title: "Code Library",
+                        message: "Your code has been saved!",
+                        backdrop: true
+                    });
+
+                    getLanguageInfo()
+                })
+                .catch( () => {
+                    bootbox.alert({
+                        title: "Code Library",
+                        message: "Your code has NOT been saved. Try again.",
+                        backdrop: true
+                    });
+                });
+
             data.editing = false;
         }
 
